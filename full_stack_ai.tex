@@ -1,0 +1,376 @@
+\documentclass[10pt,a4paper]{article}
+
+% =========================
+% PAGE / MARGINS (balanced for 2 pages)
+% =========================
+\usepackage[a4paper,top=0.45in,bottom=0.45in,left=0.45in,right=0.45in]{geometry}
+
+% =========================
+% FONTS (pdfLaTeX, no imports)
+% =========================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{sourcesanspro}
+
+% =========================
+% CORE
+% =========================
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{needspace}
+\usepackage{paracol}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[none]{hyphenat} % prevents word hyphenation/breaking
+
+% =========================
+% COLORS
+% =========================
+\definecolor{primary}{HTML}{111827}
+\definecolor{secondary}{HTML}{6B7280}
+\definecolor{rulecolor}{HTML}{E5E7EB}
+
+% =========================
+% LINKS (ATS-safe)
+% =========================
+\hypersetup{
+  colorlinks=true,
+  linkcolor=primary,
+  urlcolor=primary,
+  citecolor=primary,
+  pdfborder={0 0 0}
+}
+\urlstyle{same}
+
+% =========================
+% TYPOGRAPHY
+% =========================
+\setlength{\headheight}{30pt}
+\setlength{\headsep}{5pt}
+\setlength{\columnsep}{1.8em} 
+\RaggedRight
+\linespread{1.03}
+\setlength{\emergencystretch}{2em}
+\sloppy
+
+% =========================
+% PAGE HEADER (PAGE 1 / PAGE 2)
+% =========================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\textcolor{secondary}{\footnotesize PAGE \thepage}}
+
+% =========================
+% SECTION STYLE (RIGHT COLUMN)
+% =========================
+\titleformat{\section}
+  {\needspace{3\baselineskip}\large\bfseries\color{primary}}
+  {}
+  {0pt}
+  {\MakeUppercase}
+\titlespacing*{\section}{0pt}{0pt}{4pt}
+
+% =========================
+% LISTS
+% =========================
+\setlist[itemize]{leftmargin=1.15em, itemsep=2pt, topsep=3pt, parsep=0pt, partopsep=0pt}
+\renewcommand\labelitemi{\textbullet}
+
+% =========================
+% SIZING HELPERS (font hierarchy)
+% =========================
+\newcommand{\NameSize}{\fontsize{22}{24}\selectfont}
+\newcommand{\TitleSize}{\fontsize{10.8}{13}\selectfont}
+\newcommand{\TagSize}{\fontsize{10}{12}\selectfont}
+\newcommand{\BodySize}{\fontsize{9.7}{12}\selectfont}
+\newcommand{\SmallBody}{\fontsize{9.2}{11.4}\selectfont}
+
+% =========================
+% DIVIDERS
+% =========================
+\newcommand{\topdivider}{\color{rulecolor}\rule{\linewidth}{0.5pt}\color{primary}\vspace{0pt}}
+\newcommand{\blockdivider}{\vspace{0pt}\color{rulecolor}\rule{\linewidth}{0.5pt}\color{primary}\vspace{4pt}}
+
+% =========================
+% SIDEBAR MACROS (LEFT COLUMN)
+% All right-aligned, like your screenshots
+% =========================
+\newcommand{\sideheading}[1]{%
+  {\RaggedLeft\bfseries\color{primary}\large\MakeUppercase{#1}\par}%
+  \vspace{0pt}%
+}
+\newcommand{\sidesub}[1]{%
+  \vspace{6pt}%
+  {\RaggedLeft\bfseries\color{primary}\MakeUppercase{#1}\par}%
+  \vspace{3pt}%
+}
+\newcommand{\sideitem}[1]{%
+  {\RaggedLeft\SmallBody\textcolor{primary}{%
+    \hyphenpenalty=10000\exhyphenpenalty=10000 #1}\par}%
+}
+% =========================
+% RIGHT COLUMN HELPERS
+% =========================
+\newcommand{\roleheader}[4]{%
+  \textbf{\MakeUppercase{#1}} \hfill \textcolor{primary}{#2}\\
+  \textbf{\MakeUppercase{#3}} \hfill \textcolor{primary}{#4}\\[4pt]
+}
+\newcommand{\projecttitle}[1]{\textbf{#1}\par\vspace{2pt}}
+
+% =========================
+% DOCUMENT
+% =========================
+\begin{document}
+\BodySize
+
+% =========================
+% PAGE 1 HEADER (centered)
+% =========================
+\begin{center}
+{\NameSize \bfseries JAKIR HUSSAIN}\\[4pt]
+{\TitleSize \bfseries SENIOR FULL-STACK ENGINEER}\\[2pt]
+{\TagSize \bfseries NODE JS \;|\; AI PLATFORMS \;|\; CLOUD \& APIs}\\[6pt]
+
+\SmallBody
+Senior Full-Stack Engineer with 8+ years of experience designing and delivering cloud-native, AI-integrated platforms using Node.js, React, and GraphQL. Specialized in microservice architectures, CI/CD automation, and cloud deployments on AWS and Kubernetes, with strong exposure to agentic AI systems, RAG pipelines, and enterprise APIs.\\[5pt]
+Recognized for effectively bridging frontend UX excellence with backend scalability and performance, delivering secure, resilient, and data-intensive platforms across fintech, media, and regulated enterprise environments.\\[8pt]
+
+\href{mailto:itsjakirhussain@gmail.com}{itsjakirhussain@gmail.com} \;|\;
++971 551419969 \;|\;
+Dubai, UAE \;|\;
+\href{https://linkedin.com/in/iam-hussain}{linkedin.com/in/iam-hussain} \;|\;
+\href{https://iam-hussain.site}{iam-hussain.site}
+
+\end{center}
+\vspace{-8pt}
+\topdivider
+\vspace{2pt}
+% ============================================================
+% PAGE 1: LEFT = SKILLS, RIGHT = SYNECHRON
+% ============================================================
+\setcolumnwidth{0.31\textwidth,0.69\textwidth}
+\begin{paracol}{2}
+
+% ---------- LEFT COLUMN ----------
+\switchcolumn[0]*
+\sideheading{Skills}
+
+\sidesub{Back-End \& APIs}
+\sideitem{Node.js, Bun}
+\sideitem{TypeScript, JavaScript}
+\sideitem{Express.js, Hapi}
+\sideitem{REST APIs, GraphQL}
+\sideitem{Apollo GraphQL, GraphQL Modules}
+\sideitem{Prisma ORM, Sequelize ORM}
+
+\sidesub{Front-End}
+\sideitem{React.js, Next.js}
+\sideitem{Redux Toolkit, React Query, React Router}
+\sideitem{Tailwind CSS, Material UI}
+\sideitem{Styled Components}
+\sideitem{Vite, Webpack, Babel}
+\sideitem{Storybook}
+\sideitem{Framer Motion}
+
+\sidesub{Mobile \& Desktop}
+\sideitem{React Native, Expo}
+\sideitem{Electron, Tauri}
+\sideitem{React Native WebView}
+
+\sidesub{AI \& LLM Engineering}
+\sideitem{LLM Application Development}
+\sideitem{Multi-Agent Architectures \& Tool Calling}
+\sideitem{LangChain (Agents, Tools)}
+\sideitem{OpenAI (ChatGPT), LLaMA, Claude}
+\sideitem{Prompt Engineering \& Safety}
+\sideitem{RAG, AI Guardrails \& Validation}
+
+\sidesub{Data, Caching \& Search}
+\sideitem{MongoDB, PostgreSQL}
+\sideitem{MySQL, DynamoDB}
+\sideitem{Redis (Embedded \& Distributed)}
+\sideitem{Elasticsearch}
+
+\sidesub{Cloud, DevOps \& Platform}
+\sideitem{AWS (Lambda, S3)}
+\sideitem{Docker, Podman}
+\sideitem{Kubernetes, OpenShift}
+\sideitem{Terraform}
+\sideitem{Jenkins, GitHub Actions}
+\sideitem{Serverless Architectures}
+\sideitem{Load Balancers, CDN}
+
+\sidesub{Testing \& QA}
+\sideitem{Playwright, Cypress}
+\sideitem{Jest, Mocha, Chai}
+\sideitem{Cucumber.js}
+\sideitem{Vitest}
+
+\vspace{16pt}
+
+\sidesub{Engineering Practices}
+\sideitem{System Design \& Architecture}
+\sideitem{Microservices Architecture}
+\sideitem{Performance Optimization}
+\sideitem{Security-Aware Development}
+\sideitem{Compliance-Driven Systems}
+\sideitem{CI/CD Automation}
+\sideitem{Web Accessibility (WCAG)}
+
+\vspace{10pt}
+\sidesub{Freelance / Contract}
+\vspace{4pt}
+
+\sideitem{\textbf{Origin Protocol}}
+\sideitem{Frontend Engineer — Remote}
+\sideitem{Dec 2020 -- Feb 2021}
+
+\vspace{3pt}
+\sideitem{Worked on an Ethereum-based dApp, implementing Web3.js and MetaMask wallet integration. Collaborated on GraphQL API extensions within a Lerna-managed monorepo.}
+
+\vspace{8pt}
+
+\sideitem{\textbf{Threado}}
+\sideitem{Frontend Engineer — Bangalore, India}
+\sideitem{Nov 2021 -- Jan 2022}
+
+\vspace{3pt}
+\sideitem{Contributed to a community management web application using TypeScript, React, and Next.js with a component-driven UI approach.}
+
+\vspace{10pt}
+
+\sidesub{Early Career}
+
+\sideitem{\textbf{Selsun Technologies}}
+\sideitem{Software Trainee — Chennai, India}
+\sideitem{Dec 2017 -- Nov 2018}
+
+\vspace{3pt}
+\sideitem{Developed computer vision solutions for semi-automated equipment, enhancing OpenCV-based image processing algorithms using C++ and Python.}
+
+\vspace{10pt}
+
+\sideheading{Education}
+\vspace{4pt}
+\sideitem{\textbf{Arunai Engineering College}}
+\sideitem{Tiruvannamalai, Tamil Nadu, India}
+\vspace{3pt}
+\sideitem{Bachelor of Engineering in Mechanical Engineering}
+\sideitem{Aug 2013 -- Jun 2016}
+
+\vspace{8pt}
+\sideitem{\textbf{Kumaran Polytechnic College}}
+\sideitem{Tiruvannamalai, Tamil Nadu, India}
+\vspace{3pt}
+\sideitem{Diploma in Mechanical Engineering}
+\sideitem{Aug 2010 -- Jun 2013}
+
+\vspace{10pt}
+\sidesub{Languages}
+\sideitem{ENGLISH, TAMIL, HINDI}
+
+\vspace{10pt}
+\sidesub{Social}
+
+\sideitem{Portfolio — \href{https://iam-hussain.site}{iam-hussain.site}}
+\sideitem{LinkedIn — \href{https://linkedin.com/in/iam-hussain}{iam-hussain}}
+\sideitem{GitHub — \href{https://github.com/iam-hussain}{iam-hussain}}
+
+% ---------- RIGHT COLUMN ----------
+\switchcolumn[1]
+\section*{Experience}
+\roleheader{Synechron Technologies LLC}{Dubai, UAE}{Lead -- Technology}{Dec 2024 -- Present}
+
+\projecttitle{Treasury AI Assistant -- Emirates NBD}
+Leading the design and delivery of an AI-powered conversational assistant for the Treasury department, enabling real-time insights, operational intelligence, and decision support within a highly regulated banking environment.
+
+\begin{itemize}
+  \item Architected a \textbf{multi-agent LLM system} with deterministic orchestration, domain reasoning, tool execution, and response validation to ensure auditable and traceable AI outputs.
+  \item Designed secure \textbf{prompt and tool workflows} enabling controlled interaction with \textbf{Calypso APIs}, enforcing strict access controls and data boundaries.
+  \item Implemented \textbf{agentic AI patterns} using \textbf{LangChain and LangGraph}, supporting controlled execution, failure isolation, and observability.
+  \item Built \textbf{Retrieval-Augmented Generation (RAG)} pipelines using vector databases and embeddings to deliver context-aware responses while preventing data leakage.
+  \item Implemented \textbf{Redis-based contextual memory and caching} for session-level state management and low-latency retrieval.
+  \item Integrated multiple LLM providers (\textbf{OpenAI, LLaMA, Claude}) with routing, fallback strategies, and sensitivity-aware response handling.
+  \item Established enterprise-grade \textbf{AI guardrails} covering prompt safety, authorization, data masking, and compliance validation.
+  \item Collaborated with treasury, risk, compliance, and security teams to align with banking governance and prepare the platform for production rollout.
+\end{itemize}
+
+\textbf{Tech Stack} \\
+Node.js, TypeScript, LangChain, LangGraph, Multi-Agent LLM Architectures, Agentic AI, RAG, Vector Databases, OpenAI, LLaMA, Claude, Redis, Calypso APIs
+
+\blockdivider
+
+\projecttitle{Open Finance Platform -- Emirates NBD}
+Led backend and API architecture for Emirates NBD’s Open Finance Platform under the UAE Central Bank \textbf{``Compete \& Comply''} Open Banking framework.
+
+\begin{itemize}
+  \item Designed and delivered \textbf{Node.js / TypeScript microservices} enabling secure, consent-driven data exchange between Licensed Financial Institutions (LFIs) and Third-Party Providers (TPPs).
+  \item Implemented \textbf{REST and GraphQL APIs}, integrated with React and Next.js dashboards for regulatory workflows and consent lifecycle management.
+  \item Implemented \textbf{3Scale API Gateway} and automated \textbf{CI/CD pipelines} (Jenkins, OpenShift), reducing release cycles by approximately \textbf{40\%}.
+  \item Worked directly with UAE Central Bank regulators to ensure compliance with Open Banking standards, data governance, and security controls.
+  \item Partnered with AI and analytics teams to prototype \textbf{predictive consent analytics} and anomaly detection dashboards.
+\end{itemize}
+
+\textbf{Tech Stack} \\
+Express.js, TypeScript, REST, GraphQL, React.js, Material UI, MongoDB, OpenShift, 3Scale, Docker, Kubernetes, Jenkins, Playwright, Cucumber.js
+
+
+\vspace{16pt}
+
+\roleheader{Condé Nast Technology Lab}{Bangalore, India}{Software Engineer II}{Jun 2021 -- Nov 2024}
+
+\projecttitle{The New Yorker -- Caption Contest, AI Personalization, Home, Quizzes \& Newsletters}
+\begin{itemize}
+  \item Architected and delivered a \textbf{full-stack AI personalization platform} integrating ML-driven recommendations with real-time React rendering.
+  \item Built adaptive \textbf{React and Next.js experiences} backed by personalization APIs, increasing user engagement by \textbf{27\%}.
+  \item Designed and automated \textbf{Kubernetes CronJobs} for large-scale Instagram caption ingestion, enabling continuous content synchronization.
+  \item Converted predictive analytics into interactive UI components and scalable \textbf{GraphQL APIs} in collaboration with ML and backend teams.
+  \item Led the POC and production rollout of \textbf{server-driven UI}, reducing duplicated layout logic by \textbf{40\%}.
+  \item Developed the \textbf{``Name Drop''} quiz application end-to-end from Figma designs, combining backend logic, animation-driven UX, and performance optimization.
+  \item Improved homepage accessibility through audio-article playback and adaptive media handling.
+  \item Optimized newsletter subscription workflows, increasing recurring user sign-ups by \textbf{18\%}.
+  \item Mentored engineers on React performance optimization, memoization, and accessibility best practices.
+  \item Implemented end-to-end analytics pipelines (\textbf{Snowplow + GraphQL}) to support AI-driven personalization feedback loops.
+\end{itemize}
+
+\textbf{Tech Stack} \\
+React.js, Next.js, TypeScript, GraphQL, Node.js, Styled Components, Storybook, Prisma, MongoDB, MySQL, Kubernetes, Terraform, GitHub Actions, AWS, Hapi, Express, Datadog, Serverless Framework, Fastly CDN, Databricks, Vitest
+
+\blockdivider
+
+\roleheader{HTC Global Services}{Chennai, Tamil Nadu, India}{Software Developer}{Feb 2020 -- Jun 2021}
+
+\projecttitle{Manipal Education and Lead Management}
+\begin{itemize}
+  \item Designed and built microservice-based APIs for Manipal University’s online platform serving 50K+ students.
+  \item Implemented serverless ingestion pipelines (AWS Lambda, SQS, DynamoDB) to process Salesforce data 60\% faster.
+  \item Integrated Elasticsearch search and asynchronous event processing to enable real-time analytics and reporting.
+  \item Deployed Dockerized Node.js services on AWS EC2, improving CI/CD reliability by \textasciitilde30\%.
+  \item Collaborated closely with frontend teams to integrate React applications with backend services.
+\end{itemize}
+
+\textbf{Tech Stack} \\
+Node.js, Express.js, TypeScript, Sequelize, DynamoDB, Elasticsearch, AWS Lambda, SQS, Docker
+
+\blockdivider
+
+\roleheader{Develop Script LLC}{Chennai, Tamil Nadu, India}{Node JS Developer}{Dec 2018 -- Jan 2020}
+
+\projecttitle{Mazzady, Sothebi, PreRio, SlotCycle}
+\begin{itemize}
+  \item Built real-time auction platforms using Node.js, Express, and WebSockets (Socket.IO).
+  \item Implemented Redis Pub/Sub for low-latency bid synchronization across concurrent users.
+  \item Integrated payments, logistics, and notifications to deliver end-to-end e-commerce workflows.
+  \item Developed React-based admin and bidding interfaces with real-time updates.
+\end{itemize}
+
+\textbf{Tech Stack} \\
+Node.js, Express.js, React.js, Socket.IO, Redis, AWS RDS, MySQL
+
+\end{paracol}
+
+\end{document}
