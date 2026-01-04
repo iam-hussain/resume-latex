@@ -1,0 +1,217 @@
+\documentclass[10pt,a4paper]{article}
+
+% =========================
+% PAGE SETUP (ATS SAFE)
+% =========================
+\usepackage[a4paper,top=0.60in,bottom=0.60in,left=0.70in,right=0.70in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[x11names,table,dvipsnames]{xcolor}
+
+% Font (clean, ATS-friendly)
+\usepackage[default]{sourcesanspro}
+
+% Copy/paste and text extraction reliability (safe even if file missing)
+\IfFileExists{glyphtounicode.tex}{\input{glyphtounicode}}{}
+\pdfgentounicode=1
+
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage[none]{hyphenat}
+
+\sloppy
+\RaggedRight
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlength{\emergencystretch}{2em}
+
+% =========================
+% Minimal styling (ATS-safe)
+% =========================
+\definecolor{rulecolor}{HTML}{E5E7EB}
+
+\titleformat{\section}
+  {\needspace{3\baselineskip}\large\bfseries}
+  {}
+  {0pt}
+  {\MakeUppercase}
+\titlespacing*{\section}{0pt}{7pt}{4pt}
+
+\newcommand{\divider}{\vspace{2pt}\color{rulecolor}\rule{\linewidth}{0.5pt}\color{black}\vspace{4pt}}
+
+\setlist[itemize]{
+  leftmargin=1.25em,
+  itemsep=2pt,
+  topsep=2pt,
+  parsep=0pt
+}
+\renewcommand\labelitemi{\textbullet}
+
+% =========================
+% Header + Job block helpers (ATS-first)
+% =========================
+\newcommand{\NameSize}{\fontsize{22}{24}\selectfont}
+\newcommand{\TitleSize}{\fontsize{11}{13}\selectfont}
+\newcommand{\MetaSize}{\fontsize{9.6}{11.8}\selectfont}
+
+% Strict ATS job header:
+% ROLE (line 1) | DATES (right)
+% COMPANY, LOCATION (line 2)
+\newcommand{\job}[4]{%
+\textbf{#1}\hfill #4\\
+\textbf{#2}, #3\\
+}
+
+\newcommand{\project}[1]{\textit{Project: #1}\par}
+\newcommand{\stack}[1]{\textit{Tech:} #1\par}
+
+% =========================
+% DOCUMENT
+% =========================
+\begin{document}
+
+% =========================
+% HEADER (ATS-friendly, no center needed)
+% =========================
+{\NameSize\bfseries Jakir Hussain}\par
+{\TitleSize\bfseries Senior Full-Stack Engineer | Node.js | AI Platforms | Cloud APIs}\par
+\vspace{2pt}
+{\MetaSize
+\href{mailto:itsjakirhussain@gmail.com}{itsjakirhussain@gmail.com}
+\;|\; +971 551419969
+\;|\; Dubai, UAE
+\;|\; \href{https://linkedin.com/in/iam-hussain}{linkedin.com/in/iam-hussain}
+\;|\; \href{https://github.com/iam-hussain}{github.com/iam-hussain}
+\;|\; \href{https://iam-hussain.site}{iam-hussain.site}
+\par}
+\divider
+
+% =========================
+% SUMMARY
+% =========================
+\section*{Professional Summary}
+Senior Full-Stack Engineer with 8+ years of experience building cloud-native platforms using \textbf{Node.js, TypeScript, React, and GraphQL}. Expertise in \textbf{microservices}, \textbf{REST/GraphQL API design}, \textbf{CI/CD automation}, and \textbf{AWS/Kubernetes}. Hands-on experience delivering \textbf{LLM-powered applications} including \textbf{multi-agent orchestration}, \textbf{tool calling}, and \textbf{RAG (Retrieval-Augmented Generation)} with safety guardrails for regulated enterprise use cases.
+
+% =========================
+% SKILLS (compact but keyword-rich)
+% =========================
+\section*{Technical Skills}
+\textbf{Core:} Microservices, Distributed Systems, API Security, OAuth/OIDC, Observability, Performance Optimization, CI/CD, AWS, Kubernetes, Terraform, REST APIs, GraphQL, RAG, Tool Calling, Multi-Agent Systems\\
+\textbf{Languages:} TypeScript, JavaScript, HTML, CSS\\
+\textbf{Back-End:} Node.js, Bun, Express.js, Hapi, Apollo GraphQL, GraphQL Modules, Prisma ORM, Sequelize ORM\\
+\textbf{Front-End:} React.js, Next.js, Redux Toolkit, React Query, React Router, Tailwind CSS, Material UI, Styled Components, Storybook, Framer Motion\\
+\textbf{AI/LLM:} OpenAI API (ChatGPT), LLaMA, Claude, LangChain, LangGraph, Prompt Engineering, Guardrails, Validation\\
+\textbf{Data/Search:} MongoDB, PostgreSQL, MySQL, DynamoDB, Redis, Elasticsearch\\
+\textbf{Cloud/DevOps:} Docker, Kubernetes, OpenShift, Jenkins, GitHub Actions, 3Scale, Load Balancers, CDN\\
+\textbf{Testing/Tools:} Playwright, Cypress, Jest, Vitest, Mocha, Chai, Cucumber.js, Datadog, Fastly CDN, Snowplow, Serverless Framework
+
+% =========================
+% EXPERIENCE (strict order)
+% =========================
+\section*{Work Experience}
+
+\job{Lead - Technology}{Synechron Technologies LLC}{Dubai, UAE}{Dec 2024 -- Present}
+\project{Treasury AI Assistant (Emirates NBD)}
+\begin{itemize}
+  \item Led development of an AI assistant for treasury users, enabling real-time insights and decision support in a regulated banking environment.
+  \item Designed a \textbf{multi-agent LLM architecture} separating orchestration, domain reasoning, tool execution, and validation for traceable and auditable outputs.
+  \item Defined secure prompt/tool workflows for controlled access to \textbf{Calypso APIs}, enforcing authorization and data-boundary controls.
+  \item Built \textbf{RAG pipelines} using embeddings and vector search to improve answer relevance while preventing sensitive-data leakage.
+  \item Added Redis-based session memory and caching to reduce latency and stabilize multi-turn user sessions.
+  \item Enabled model routing across OpenAI, LLaMA, and Claude with fallback behavior and response validation guardrails.
+\end{itemize}
+\stack{Node.js, TypeScript, LangChain, LangGraph, OpenAI API, RAG, Redis, Calypso APIs}
+
+\vspace{3pt}
+\project{Open Finance Platform (Emirates NBD)}
+\begin{itemize}
+  \item Architected backend services under the UAE Central Bank Open Banking framework (Compete and Comply).
+  \item Built Node.js/TypeScript microservices supporting consent-driven data exchange between LFIs and TPPs.
+  \item Delivered REST and GraphQL APIs with dashboards for consent lifecycle management and regulatory workflows.
+  \item Automated CI/CD using Jenkins and OpenShift, cutting deployment cycles by \textbf{~40\%}.
+\end{itemize}
+\stack{Node.js, TypeScript, REST, GraphQL, OpenShift, Jenkins, MongoDB, 3Scale}
+
+\divider
+
+\job{Software Engineer II}{Conde Nast Technology Lab}{Bangalore, India}{Jun 2021 -- Nov 2024}
+\project{The New Yorker - Caption Contest and AI Personalization}
+\begin{itemize}
+  \item Built a full-stack personalization platform combining ML recommendations with real-time React rendering.
+  \item Shipped adaptive React/Next.js experiences backed by personalization APIs, increasing engagement by \textbf{27\%}.
+  \item Introduced server-driven UI patterns, reducing duplicated layout logic by \textbf{40\%} across segments and devices.
+  \item Automated Kubernetes CronJobs for large-scale Instagram caption ingestion, improving synchronization and content freshness.
+  \item Optimized newsletter flows and preference toggles, improving recurring sign-ups by \textbf{18\%}.
+\end{itemize}
+\stack{React, Next.js, TypeScript, GraphQL, Node.js, Kubernetes, Terraform, AWS, Prisma, MongoDB, MySQL}
+
+\divider
+
+\job{Software Developer}{HTC Global Services}{Chennai, India}{Feb 2020 -- Jun 2021}
+\project{Manipal Education - Lead Management Platform}
+\begin{itemize}
+  \item Built microservice APIs for an online platform supporting \textbf{50K+ students}.
+  \item Delivered serverless ingestion pipelines (AWS Lambda, SQS, DynamoDB), accelerating Salesforce data processing by \textbf{60\%}.
+  \item Added Elasticsearch-powered search and async processing to support near real-time analytics and reporting.
+  \item Containerized Node.js services and strengthened CI/CD reliability by \textbf{~30\%}.
+\end{itemize}
+\stack{Node.js, TypeScript, Express.js, AWS Lambda, SQS, DynamoDB, Elasticsearch, Docker}
+
+\divider
+
+\job{Node.js Developer}{Develop Script LLC}{Chennai, India}{Dec 2018 -- Jan 2020}
+\project{E-commerce and Auction Platforms (Mazzady, Sothebi, PreRio, SlotCycle)}
+\begin{itemize}
+  \item Delivered real-time auction functionality using Node.js and WebSockets (Socket.IO) for live bidding.
+  \item Added Redis Pub/Sub to synchronize bid events across concurrent users with low-latency updates.
+  \item Built payment, logistics, and notification workflows supporting end-to-end commerce operations.
+\end{itemize}
+\stack{Node.js, Express.js, React.js, Socket.IO, Redis, MySQL, AWS RDS}
+
+% =========================
+% ADDITIONAL EXPERIENCE (ATS-friendly section)
+% =========================
+\section*{Additional Experience}
+
+\job{Frontend Engineer (Contract)}{Origin Protocol}{Remote (San Francisco, CA)}{Dec 2020 -- Feb 2021}
+\begin{itemize}
+  \item Shipped functional enhancements for an Ethereum-based dApp supporting wallet-based user flows and on-chain transactions.
+  \item Built MetaMask connectivity with Web3.js and improved GraphQL API interactions within a multi-package monorepo.
+\end{itemize}
+\stack{TypeScript, GraphQL, Web3.js, MetaMask, Lerna, Styled Components}
+
+\job{Frontend Engineer (Contract)}{Threado}{Bangalore, India}{Nov 2021 -- Jan 2022}
+\begin{itemize}
+  \item Built production-ready UI features for a community management platform using TypeScript and React with Next.js routing patterns.
+  \item Improved page performance and component reuse by standardizing UI patterns and state updates.
+\end{itemize}
+\stack{TypeScript, React, Next.js, Redux, Material UI, Styled Components}
+
+\job{Software Trainee}{Selsun Technologies}{Chennai, India}{Dec 2017 -- Nov 2018}
+\begin{itemize}
+  \item Developed computer vision solutions for semi-automated equipment and refined OpenCV pipelines for image-based inspection.
+  \item Improved C++ and Python image-processing modules to increase robustness under variable lighting and noisy input.
+\end{itemize}
+\stack{C++, Python, OpenCV}
+
+% =========================
+% EDUCATION
+% =========================
+\section*{Education}
+\textbf{Arunai Engineering College}, Tiruvannamalai, India \hfill Aug 2013 -- Jun 2016\\
+Bachelor of Engineering in Mechanical Engineering
+
+\textbf{Kumaran Polytechnic College}, Tiruvannamalai, India \hfill Aug 2010 -- Jun 2013\\
+Diploma in Mechanical Engineering
+
+% =========================
+% LANGUAGES
+% =========================
+\section*{Languages}
+English, Tamil, Hindi
+
+\end{document}

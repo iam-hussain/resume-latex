@@ -1,0 +1,265 @@
+\documentclass[10pt,a4paper]{article}
+
+% =========================
+% ATS + 2-PAGE OPTIMIZATION
+% =========================
+\usepackage[a4paper,top=0.55in,bottom=0.55in,left=0.70in,right=0.70in]{geometry}
+
+% --- Encoding / text extraction ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% Font
+\usepackage[default]{sourcesanspro}
+
+% Core
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\usepackage{needspace}
+\usepackage[none]{hyphenat}
+
+% =========================
+% Typography
+% =========================
+\sloppy
+\setlength{\emergencystretch}{2em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\RaggedRight
+
+% =========================
+% Styling (ATS-safe)
+% =========================
+\definecolor{primary}{HTML}{111827}
+\definecolor{secondary}{HTML}{4B5563}
+\definecolor{rulecolor}{HTML}{E5E7EB}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=primary,
+  linkcolor=primary
+}
+\urlstyle{same}
+
+\titleformat{\section}
+  {\needspace{3\baselineskip}\bfseries\color{primary}\large}
+  {}
+  {0pt}
+  {\MakeUppercase}
+\titlespacing*{\section}{0pt}{7pt}{3pt}
+
+\newcommand{\divider}{\color{rulecolor}\rule{\linewidth}{0.45pt}\color{primary}}
+
+% Tight lists (key for 2 pages)
+\setlist[itemize]{
+  leftmargin=1.2em,
+  itemsep=1pt,
+  topsep=1pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+\renewcommand\labelitemi{\textbullet}
+
+% Font hierarchy
+\newcommand{\NameSize}{\fontsize{22}{24}\selectfont}
+\newcommand{\TitleSize}{\fontsize{11}{13}\selectfont}
+\newcommand{\MetaSize}{\fontsize{9.3}{11.2}\selectfont}
+
+% Job format: Role / Company / Location / Dates (parser-stable)
+\newcommand{\job}[4]{%
+  \textbf{#1} \hfill \textcolor{secondary}{#4}\\
+  \textit{#2, #3}\par
+}
+
+% Project label prevents ATS role confusion
+\newcommand{\project}[1]{\textit{Project: #1}\par}
+
+% Compact tech line
+\newcommand{\stack}[1]{\textit{Tech:} #1\par}
+
+% =========================
+% DOCUMENT
+% =========================
+\begin{document}
+
+% =========================
+% HEADER (ATS-friendly, improved)
+% =========================
+{\NameSize\bfseries Jakir Hussain}\par
+\vspace{2pt}
+
+{\TitleSize\bfseries Senior Full-Stack Engineer — Node.js, AI Platforms, Cloud \& APIs}\par
+\vspace{4pt}
+
+{\MetaSize
+Dubai, UAE \;|\;
+\href{mailto:itsjakirhussain@gmail.com}{itsjakirhussain@gmail.com}
+\;|\; +971 551419969 \par
+\href{https://linkedin.com/in/iam-hussain}{linkedin.com/in/iam-hussain}
+\;|\; \href{https://iam-hussain.site}{iam-hussain.site}
+\;|\; \href{https://github.com/iam-hussain}{github.com/iam-hussain}
+}
+
+\vspace{6pt}
+\divider
+% =========================
+% SUMMARY (tight)
+% =========================
+\section*{Professional Summary}
+Senior Full-Stack Engineer with 8+ years building cloud-native platforms using \textbf{Node.js, TypeScript, React, and GraphQL}. Experienced in \textbf{microservices}, \textbf{REST/GraphQL APIs}, \textbf{CI/CD}, and \textbf{AWS/Kubernetes}. Hands-on in \textbf{LLM application development} (\textbf{multi-agent orchestration}, \textbf{tool calling}, \textbf{RAG}, \textbf{guardrails}) for secure and scalable fintech/media/regulated enterprise systems.
+% =========================
+% TECHNICAL SKILLS
+% =========================
+\section*{Technical Skills}
+
+\textbf{Core Engineering:}  
+Microservices, Distributed Systems, REST APIs, GraphQL, API Security, OAuth/OIDC, Observability, Performance Optimization, CI/CD, Cloud-Native Architecture
+
+\textbf{Languages:}  
+TypeScript, JavaScript, HTML, CSS
+
+\textbf{Back-End:}  
+Node.js, Bun, Express.js, Hapi, Apollo GraphQL, GraphQL Modules, Prisma ORM, Sequelize ORM
+
+\textbf{Front-End:}  
+React.js, Next.js, Redux Toolkit, React Query, React Router, Tailwind CSS, Material UI, Styled Components, Storybook, Framer Motion
+
+\textbf{AI / LLM Engineering:}  
+OpenAI API (ChatGPT), LLaMA, Claude, LangChain, LangGraph, Prompt Engineering, Tool Calling, RAG, Guardrails, Validation
+
+\textbf{Data \& Search:}  
+MongoDB, PostgreSQL, MySQL, DynamoDB, Redis, Elasticsearch
+
+\textbf{Cloud \& DevOps:}  
+AWS (Lambda, S3), Docker, Kubernetes, OpenShift, Terraform, Jenkins, GitHub Actions, 3Scale, Load Balancers, CDN
+
+\textbf{Testing \& Observability:}  
+Playwright, Cypress, Jest, Vitest, Mocha, Chai, Cucumber.js, Datadog, Snowplow, Fastly CDN, Serverless Framework
+
+\textbf{Engineering Practices:}  
+System Design, Security-Aware Development, Compliance, Web Accessibility (WCAG)
+% =========================
+% WORK EXPERIENCE
+% =========================
+\section*{Work Experience}
+
+\job{Lead - Technology}{Synechron Technologies LLC}{Dubai, UAE}{Dec 2024 -- Present}
+\project{Treasury AI Assistant (Emirates NBD)}
+\begin{itemize}
+  \item Leading delivery of an AI conversational assistant for Treasury, enabling real-time insights and decision support in a regulated environment.
+  \item Architected a \textbf{multi-agent LLM system} separating orchestration, reasoning, tool execution, and validation for traceable, auditable outputs.
+  \item Designed secure \textbf{prompt/tool workflows} to access \textbf{Calypso APIs} with strict authorization and data-boundary controls.
+  \item Implemented \textbf{RAG} with vector search/embeddings for context-aware responses while preventing data leakage.
+  \item Built \textbf{Redis session memory + caching} for low-latency retrieval and controlled lifecycle management.
+  \item Integrated \textbf{OpenAI API (ChatGPT)}, LLaMA, Claude with routing/fallback and safety guardrails (masking, policy checks, validation).
+\end{itemize}
+\stack{Node.js, TypeScript, LangChain, LangGraph, OpenAI API, RAG, Vector DB, Redis, Calypso APIs}
+
+\project{Open Finance Platform (Emirates NBD)}
+\begin{itemize}
+  \item Led backend/API architecture under UAE Central Bank Open Banking framework (Compete \& Comply).
+  \item Delivered \textbf{Node.js/TypeScript microservices} for consent-driven exchange between LFIs and TPPs.
+  \item Implemented \textbf{REST + GraphQL APIs} integrated with React/Next.js dashboards for regulatory workflows and consent lifecycle.
+  \item Implemented \textbf{3Scale} and automated \textbf{CI/CD} (Jenkins, OpenShift), reducing release cycles by \textbf{~40\%}.
+\end{itemize}
+\stack{TypeScript, REST, GraphQL, 3Scale, OpenShift, Docker, Kubernetes, Jenkins, MongoDB}
+
+\vspace{3pt}
+\divider
+
+\job{Software Engineer II}{Cond\'e Nast Technology Lab}{Bangalore, India}{Jun 2021 -- Nov 2024}
+\project{The New Yorker (Caption Contest, AI Personalization, Home, Quizzes, Newsletters)}
+\begin{itemize}
+  \item Built a full-stack \textbf{AI personalization platform} integrating ML recommendations with real-time React rendering.
+  \item Delivered adaptive \textbf{React/Next.js} experiences, increasing engagement by \textbf{27\%}.
+  \item Rolled out \textbf{server-driven UI}, reducing duplicated layout logic by \textbf{40\%} across devices/segments.
+  \item Automated \textbf{Kubernetes CronJobs} for Instagram caption ingestion to improve synchronization and discovery.
+  \item Optimized newsletter subscription workflows, increasing recurring sign-ups by \textbf{18\%}; improved accessibility via audio playback/adaptive media.
+\end{itemize}
+\stack{React, Next.js, TypeScript, GraphQL, Node.js, Kubernetes, Terraform, AWS, Prisma, MongoDB, MySQL}
+
+\vspace{3pt}
+\divider
+
+\job{Software Developer}{HTC Global Services}{Chennai, India}{Feb 2020 -- Jun 2021}
+\project{Manipal Education (Lead Management Platform)}
+\begin{itemize}
+  \item Built microservice APIs for an online platform serving \textbf{50K+ students}.
+  \item Implemented serverless ingestion (Lambda, SQS, DynamoDB), improving Salesforce processing by \textbf{60\%}.
+  \item Integrated \textbf{Elasticsearch} and async event processing for real-time analytics/reporting.
+  \item Deployed Dockerized Node.js services on AWS EC2, improving CI/CD reliability by \textbf{~30\%}.
+\end{itemize}
+\stack{Node.js, TypeScript, Express, AWS Lambda, SQS, DynamoDB, Elasticsearch, Docker}
+
+\vspace{3pt}
+\divider
+
+\job{Node.js Developer}{Develop Script LLC}{Chennai, India}{Dec 2018 -- Jan 2020}
+\project{Client Projects (Mazzady, Sothebi, PreRio, SlotCycle)}
+\begin{itemize}
+  \item Built real-time auction platforms using Node.js, Express, and WebSockets (Socket.IO).
+  \item Implemented Redis Pub/Sub for low-latency bid synchronization across concurrent users.
+  \item Integrated payments, logistics, and notifications for end-to-end e-commerce workflows.
+\end{itemize}
+\stack{Node.js, Express, React, Socket.IO, Redis, MySQL, AWS RDS}
+
+% =========================
+% ADDITIONAL EXPERIENCE
+% =========================
+\section*{Additional Experience}
+
+\textbf{Frontend Engineer (Contract)} — Origin Protocol (Remote, San Francisco, CA)
+\hfill Dec 2020 -- Feb 2021
+\begin{itemize}
+  \item Contributed to functional enhancements for an Ethereum-based decentralized application (dApp) supporting on-chain transactions.
+  \item Integrated \textbf{Web3.js} with \textbf{MetaMask} to enable secure wallet connectivity and transaction signing.
+  \item Extended \textbf{GraphQL APIs} and improved blockchain event handling in collaboration with backend engineers.
+  \item Worked within a \textbf{Lerna-managed monorepo}, supporting modular frontend development and shared tooling.
+\end{itemize}
+\stack{TypeScript, GraphQL, Web3.js, MetaMask, Lerna, Styled Components}
+
+\vspace{4pt}
+
+\textbf{Frontend Engineer (Contract)} — Threado (Bangalore, India)
+\hfill Nov 2021 -- Jan 2022
+\begin{itemize}
+  \item Contributed to the development of a community management web application in a fast-paced startup environment.
+  \item Built user-facing features and pages using \textbf{TypeScript} and \textbf{React}, following component-driven design principles.
+  \item Worked with \textbf{Next.js} for routing, performance optimization, and SEO-friendly rendering.
+\end{itemize}
+\stack{TypeScript, React, Next.js, Material UI, Styled Components, Redux}
+
+\vspace{4pt}
+
+\textbf{Software Trainee} — Selsun Technologies (Chennai, India)
+\hfill Dec 2017 -- Nov 2018
+\begin{itemize}
+  \item Worked on computer vision solutions for semi-automated industrial equipment.
+  \item Enhanced \textbf{OpenCV-based image processing algorithms} to improve accuracy and performance.
+  \item Developed supporting utilities and algorithms using \textbf{C++} and \textbf{Python} under tight delivery timelines.
+\end{itemize}
+\stack{C++, Python, OpenCV}
+% =========================
+% EDUCATION
+% =========================
+\section*{Education}
+\textbf{Arunai Engineering College} — Tiruvannamalai, Tamil Nadu, India \hfill Aug 2013 -- Jun 2016\\
+Bachelor of Engineering in Mechanical Engineering
+
+\textbf{Kumaran Polytechnic College} — Tiruvannamalai, Tamil Nadu, India \hfill Aug 2010 -- Jun 2013\\
+Diploma in Mechanical Engineering
+
+% =========================
+% LANGUAGES
+% =========================
+\section*{Languages}
+English, Tamil, Hindi
+
+\end{document}
