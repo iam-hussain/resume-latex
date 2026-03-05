@@ -1,0 +1,43 @@
+{
+    "name": "resume-server",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "dev:express": "tsx watch src/index.ts",
+        "build:express": "tsc --project tsconfig.json",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@monaco-editor/react": "^4.6.0",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "express": "^4.19.2",
+        "jsdom": "^28.1.0",
+        "latex.js": "^0.12.6",
+        "next": "^14.2.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-resizable-panels": "^2.0.0",
+        "tailwind-merge": "^3.5.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21",
+        "@types/jsdom": "^28.0.0",
+        "@types/node": "^20.11.30",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "autoprefixer": "^10.4.0",
+        "postcss": "^8.4.0",
+        "tailwindcss": "^3.4.0",
+        "ts-node": "^10.9.2",
+        "tsx": "^4.7.0",
+        "typescript": "^5.3.3"
+    },
+    "engines": {
+        "node": ">=18"
+    }
+}

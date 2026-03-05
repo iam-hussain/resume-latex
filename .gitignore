@@ -17,9 +17,19 @@
 *.vrb
 *.xdv
 
+# Next.js
+.next/
+
 # Output directories
 build/
 latex.out/
+
+# Node.js
+node_modules/
+dist/
+npm-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
 
 # macOS
 .DS_Store

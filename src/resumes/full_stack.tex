@@ -90,7 +90,7 @@
 \newcommand{\SmallBody}{\fontsize{9.2}{11.4}\selectfont}
 
 % =========================
-% DIVIDERS
+% DIVIDERS (IMPORTANT: reset to primary after rule)
 % =========================
 \newcommand{\topdivider}{\color{rulecolor}\rule{\linewidth}{0.5pt}\color{primary}\vspace{0pt}}
 \newcommand{\blockdivider}{\vspace{0pt}\color{rulecolor}\rule{\linewidth}{0.5pt}\color{primary}\vspace{4pt}}
@@ -116,30 +116,21 @@
 % RIGHT COLUMN HELPERS (ATS-optimized role structure)
 % =========================
 % Order is intentionally: Job Title -> Company | Location -> Dates
-
-% Role header with full-width left/right alignment on both lines
 \newcommand{\roleheader}[4]{%
-  % Line 1: Job Title — Dates
   \noindent
   \textbf{\MakeUppercase{#3}}%
   \hfill
   \textcolor{secondary}{#4}\\[0pt]
-
-  % Line 2: Company — Location
   \noindent
   \textbf{#1}%
   \hfill
   \textcolor{secondary}{#2}\\[0pt]
 }
-
-% Full-width divider under each role header
 \newcommand{\roledivider}{%
   \vspace{-1pt}%
   {\color{rulecolor}\rule{\linewidth}{0.5pt}}%
   \vspace{2pt}%
 }
-
-% Projects explicitly labeled for ATS parsing
 \newcommand{\projecttitle}[1]{\textbf{#1}\par\vspace{2pt}}
 
 % =========================
@@ -149,34 +140,37 @@
 \BodySize
 
 % =========================
-% PAGE 1 HEADER (centered)
+% HEADER
 % =========================
 \begin{center}
 {\NameSize \bfseries JAKIR HUSSAIN}\\[4pt]
 {\TitleSize \bfseries SENIOR FULL-STACK ENGINEER}\\[2pt]
-{\TagSize \bfseries NODE JS \;|\; AI PLATFORMS \;|\; CLOUD \& APIs}\\[6pt]
+{\TagSize \bfseries NODE.JS \;|\; REACT \& NEXT.JS \;|\; CLOUD \& APIs \;|\; AI-ENABLED FEATURES}\\[6pt]
 
 \href{mailto:itsjakirhussain@gmail.com}{itsjakirhussain@gmail.com} \;|\;
 +971 551419969 \;|\;
 Dubai, UAE \;|\;
 \href{https://linkedin.com/in/iam-hussain}{linkedin.com/in/iam-hussain} \;|\;
 \href{https://iam-hussain.site}{iam-hussain.site}
-
 \end{center}
 \vspace{-8pt}
 \topdivider
 \vspace{2pt}
+
+% =========================
+% SUMMARY (Full-Stack first, AI as advantage)
+% =========================
 \section*{Professional Summary}
 \SmallBody
-Senior Full-Stack Engineer with 8+ years of experience designing and delivering cloud-native, AI-integrated platforms using Node.js, React, and GraphQL. Specialized in microservice architectures, CI/CD automation, and cloud deployments on AWS and Kubernetes, with strong exposure to agentic AI systems, RAG pipelines, and enterprise APIs.\\[5pt]
-Recognized for bridging frontend UX excellence with backend scalability and performance, delivering secure, resilient, and data-intensive platforms across fintech, media, and regulated enterprise environments.\\[8pt]
+Senior Full-Stack Engineer with 8+ years of experience building and scaling end-to-end web platforms across frontend, backend, and cloud deployments. Strong in \textbf{React/Next.js}, \textbf{Node.js/TypeScript}, and \textbf{GraphQL/REST} with a proven track record delivering performance, reliability, and developer velocity improvements in enterprise and high-traffic consumer environments.\\[4pt]
+Differentiates through applied AI capabilities: integrating \textbf{LLM-powered features}, \textbf{RAG-based knowledge access}, and \textbf{governed automation} into full-stack systems while maintaining security, observability, and compliance.
 
-\vspace{-8pt}
+\vspace{1pt}
 \topdivider
 \vspace{2pt}
 
 % ============================================================
-% PAGE 1: LEFT = EXPERIENCE, RIGHT = SKILLS
+% PAGE: LEFT = EXPERIENCE, RIGHT = SKILLS
 % ============================================================
 \setcolumnwidth{0.69\textwidth,0.31\textwidth}
 \begin{paracol}{2}
@@ -184,42 +178,42 @@ Recognized for bridging frontend UX excellence with backend scalability and perf
 % ---------- LEFT COLUMN ----------
 \switchcolumn[0]*
 \section*{Work Experience}
+
 \roleheader{Synechron Technologies LLC (Client: Emirates NBD)}{Dubai, UAE}{Lead -- Technology}{Dec 2024 -- Present}
 \roledivider
 
-\projecttitle{Project: Treasury AI Assistant - Emirates NBD}
-Led the architecture and delivery of an enterprise-grade AI assistant enabling real-time treasury insights, operational intelligence, and decision support within a regulated banking environment.
+\projecttitle{Project: Open Finance Platform (UAE Open Banking)}
 
 \begin{itemize}
-  \item Architected a \textbf{multi-agent LLM platform using Node.js and TypeScript}, enabling deterministic orchestration, tool execution, and auditable response validation.
-  \item Designed secure \textbf{prompt engineering and tool-calling workflows} to integrate with \textbf{Calypso APIs}, enforcing strict authorization and data boundaries.
-  \item Implemented \textbf{agentic AI patterns} with \textbf{LangChain and LangGraph}, supporting controlled execution, retries, and failure isolation.
-  \item Built \textbf{Retrieval-Augmented Generation (RAG)} pipelines using vector embeddings to deliver context-aware responses while preventing sensitive data leakage.
-  \item Introduced \textbf{Redis-based session memory and caching} to maintain conversational context and ensure low-latency responses.
-  \item Integrated multiple LLM providers (\textbf{OpenAI, LLaMA, Claude}) with dynamic routing, fallback strategies, and sensitivity-aware response handling.
-  \item Established enterprise-grade \textbf{AI governance and guardrails} covering prompt safety, authorization, data masking, and compliance validation.
-  \item Partnered with treasury, risk, compliance, and security teams to align AI workflows with banking governance and production-readiness standards.
+  \item Owned end-to-end delivery of \textbf{full-stack Open Banking platforms}, combining \textbf{React/Next.js dashboards} with \textbf{Node.js and TypeScript microservices}.
+  \item Designed and implemented \textbf{consent-driven REST and GraphQL APIs} enabling secure data exchange between LFIs and TPPs under UAE Central Bank Open Banking regulations.
+  \item Led \textbf{API contract design and versioning strategy} to support backward compatibility and phased regulatory rollouts.
+  \item Integrated \textbf{API gateway and policy enforcement} using \textbf{3Scale}, implementing throttling, rate limits, OAuth flows, and request validation.
+  \item Built scalable backend services with \textbf{MongoDB and Redis}, optimizing data access, caching, and session management for high-throughput workflows.
+  \item Implemented \textbf{role-based access control (RBAC)} and consent lifecycle management to enforce fine-grained authorization.
+  \item Automated \textbf{CI/CD pipelines} using \textbf{Jenkins and OpenShift}, enabling repeatable, zero-downtime deployments across environments.
+  \item Collaborated with compliance, security, and regulatory stakeholders to align platform architecture with enterprise governance, audit, and data residency standards.
 \end{itemize}
 
 \textbf{Technologies \& Tools}\\
-Node.js, TypeScript, LangChain, LangGraph, Multi-Agent LLM Systems, Agentic AI, RAG, Vector Databases, OpenAI, LLaMA, Claude, Redis, Calypso APIs
+Node.js, TypeScript, React.js, Next.js, Express.js, GraphQL, MongoDB, Redis, OpenShift, Kubernetes, 3Scale, Jenkins, Docker
 
 \blockdivider
 
-\projecttitle{Project: Open Finance Platform - Emirates NBD}
-Owned backend and API architecture for Emirates NBD’s Open Finance Platform under the UAE Central Bank \textbf{``Compete \& Comply''} Open Banking framework.
-
+\projecttitle{Project: Treasury AI Assistant}
 \begin{itemize}
-  \item Designed and delivered \textbf{Node.js and TypeScript microservices} enabling secure, consent-driven data exchange between Licensed Financial Institutions (LFIs) and Third-Party Providers (TPPs).
-  \item Implemented \textbf{REST and GraphQL APIs} using \textbf{Express and Apollo GraphQL}, integrated with React and Next.js dashboards for regulatory and consent workflows.
-  \item Integrated \textbf{3Scale API Gateway} and automated \textbf{CI/CD pipelines} (Jenkins, OpenShift), reducing release cycles by approximately \textbf{40\%}.
-  \item Worked directly with UAE Central Bank regulators to ensure compliance with Open Banking standards, data governance, and security controls.
-  \item Collaborated with analytics teams to prototype \textbf{predictive consent analytics} and anomaly detection dashboards.
+  \item Designed and delivered an \textbf{AI-powered internal treasury assistant}, providing contextual insights, operational intelligence, and workflow automation for treasury teams.
+  \item Architected \textbf{LLM-integrated backend services} that orchestrate prompt execution, tool invocation, and response validation within controlled workflows.
+  \item Implemented \textbf{Retrieval-Augmented Generation (RAG)} pipelines with document ingestion, chunking, embeddings, and relevance filtering to safely query internal financial data.
+  \item Developed structured \textbf{tool-calling workflows} with deterministic execution, retries, and guardrails to ensure auditability and predictable outcomes.
+  \item Enforced \textbf{authorization-aware AI responses}, ensuring data access adhered to user entitlements and regulatory boundaries.
+  \item Integrated \textbf{Redis-based conversational memory and caching} to maintain stateful interactions and ensure low-latency responses.
+  \item Implemented monitoring and traceability for AI workflows, enabling observability into request flows, latency, and failure modes.
+  \item Partnered with treasury, risk, and security teams to productionize AI workflows in a regulated banking environment.
 \end{itemize}
 
 \textbf{Technologies \& Tools}\\
-Node.js, Express.js, TypeScript, REST APIs, GraphQL, React.js, Material UI, MongoDB, OpenShift, 3Scale, Docker, Kubernetes, Jenkins, Playwright, Cucumber.js
-
+Node.js, TypeScript, LLM Integrations, RAG Pipelines, Redis, Vector Databases, Internal APIs
 \vspace{16pt}
 
 \roleheader{Cond\'e Nast Technology Lab}{Bangalore, India}{Software Engineer II}{Jun 2021 -- Nov 2024}
@@ -233,7 +227,6 @@ Node.js, Express.js, TypeScript, REST APIs, GraphQL, React.js, Material UI, Mong
   \item Led the POC and production rollout of \textbf{server-driven UI}, reducing duplicated layout logic by approximately \textbf{40\%}.
   \item Developed the \textbf{``Name Drop''} quiz application end-to-end from Figma designs, combining animation-driven UX with backend logic and performance optimization.
   \item Implemented end-to-end analytics instrumentation (\textbf{Snowplow + GraphQL}) to support personalization feedback loops and experimentation.
-  \item Collaborated closely with product, design, and editorial stakeholders to translate business requirements into scalable frontend and backend solutions.
   \item Improved application performance and reliability through targeted optimizations, code-splitting, and monitoring using \textbf{Datadog} and browser performance metrics.
 \end{itemize}
 
