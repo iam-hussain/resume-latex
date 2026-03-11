@@ -26,6 +26,10 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
 
   const [autoReload, setAutoReload] = useState(true)
   const [frozenTex, setFrozenTex] = useState(initialTex)
+  const [autoSave, setAutoSave] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return localStorage.getItem('resume-auto-save') === 'true'
+  })
 
   const debouncedTex = useDebouncedValue(texContent, DEBOUNCE_MS)
   const previewTex = autoReload ? debouncedTex : frozenTex
@@ -36,6 +40,13 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
     setAutoReload(enabled)
     if (!enabled) {
       setFrozenTex(texContent)
+    }
+  }
+
+  function handleAutoSaveChange(enabled: boolean): void {
+    setAutoSave(enabled)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('resume-auto-save', String(enabled))
     }
   }
 
@@ -73,6 +84,29 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
 
     void init()
   }, [])
+
+  useEffect(() => {
+    if (
+      autoSave &&
+      activeFile &&
+      !isBusy &&
+      debouncedTex !== savedContent &&
+      debouncedTex === texContent
+    ) {
+      void (async () => {
+        try {
+          setIsBusy(true)
+          await saveResumeFile(activeFile, debouncedTex)
+          setSavedContent(debouncedTex)
+          setStatus(`Saved ${activeFile}`, 'success')
+        } catch (err) {
+          setStatus(err instanceof Error ? err.message : 'Failed to save', 'error')
+        } finally {
+          setIsBusy(false)
+        }
+      })()
+    }
+  }, [autoSave, activeFile, isBusy, debouncedTex, texContent, savedContent])
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent): void {
@@ -178,6 +212,19 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
                 ))
               )}
             </select>
+            <button
+              type="button"
+              onClick={() => handleAutoSaveChange(!autoSave)}
+              className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
+                autoSave
+                  ? 'bg-primary/20 text-primary hover:bg-primary/30'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              }`}
+              title={autoSave ? 'Auto save on' : 'Auto save off'}
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-current" />
+              Auto Save {autoSave ? 'On' : 'Off'}
+            </button>
             <Button variant="secondary" onClick={() => void handleSaveFile()} disabled={!canSave}>
               {isBusy ? 'Saving...' : isDirty ? 'Save' : 'Saved'}
             </Button>
@@ -212,7 +259,7 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
               {message ?? (isDirty ? 'Unsaved changes' : 'Ready')}
             </p>
             <span className="text-[10px] text-muted-foreground border-l border-border pl-2">
-              Cmd/Ctrl+S
+              {autoSave ? 'Auto save' : 'Cmd/Ctrl+S'}
             </span>
           </div>
         </div>
@@ -238,6 +285,7 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
               status={status}
               error={error}
               tex={texContent}
+              fileName={activeFile}
               autoReload={autoReload}
               onAutoReloadChange={handleAutoReloadChange}
               onRefresh={handlePreviewRefresh}

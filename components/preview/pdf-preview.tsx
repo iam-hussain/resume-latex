@@ -11,6 +11,7 @@ interface PdfPreviewProps {
   status: PreviewStatus
   error: string | null
   tex: string
+  fileName?: string
   autoReload?: boolean
   onAutoReloadChange?: (enabled: boolean) => void
   onRefresh?: () => void
@@ -22,6 +23,7 @@ export function PdfPreview({
   status,
   error,
   tex,
+  fileName,
   autoReload = true,
   onAutoReloadChange,
   onRefresh,
@@ -29,13 +31,15 @@ export function PdfPreview({
 }: PdfPreviewProps): React.ReactElement {
   const [zoom, setZoom] = useState(1)
 
+  const downloadName = fileName ? fileName.replace(/\.tex$/i, '.pdf') : 'resume.pdf'
+
   async function handleDownload(): Promise<void> {
     try {
       const blob = await postPdf(tex)
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = 'resume.pdf'
+      a.download = downloadName
       a.click()
       URL.revokeObjectURL(url)
       onDownload?.()
