@@ -62,7 +62,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhead[R]{\textcolor{secondary}{\footnotesize PAGE \thepage}}
+\fancyhead[R]{\ATSspaceoff\textcolor{secondary}{\footnotesize PAGE \thepage}\ATSspaceon}
 
 % =========================
 % SECTION STYLE (RIGHT COLUMN)
@@ -143,6 +143,16 @@
 \newcommand{\projecttitle}[1]{\textbf{#1}\par\vspace{2pt}}
 
 % =========================
+% ATS: embed real space glyphs in the PDF so text extractors
+% never glue words at bold/regular font boundaries
+% (toggled off for the large name line, where the injected
+% space glyph breaks rendering at display size)
+% =========================
+\ifdefined\pdfinterwordspaceon\pdfinterwordspaceon\fi
+\newcommand{\ATSspaceoff}{\ifdefined\pdfinterwordspaceoff\pdfinterwordspaceoff\fi}
+\newcommand{\ATSspaceon}{\ifdefined\pdfinterwordspaceon\pdfinterwordspaceon\fi}
+
+% =========================
 % DOCUMENT
 % =========================
 \begin{document}
@@ -153,9 +163,9 @@
 % =========================
 \begin{center}
 
-{\NameSize \bfseries JAKIR HUSSAIN}\\[4pt]
-{\TitleSize \bfseries Senior Full-Stack \& AI Platform Engineer}\\[2pt]
-{\TagSize \bfseries Node.js \;|\; Agentic AI \;|\; Cloud-Native Systems}\\[6pt]
+{\ATSspaceoff\NameSize \bfseries JAKIR HUSSAIN\ATSspaceon}\\[4pt]
+{\TitleSize \bfseries Senior AI Engineer --- Full-Stack}\\[2pt]
+{\TagSize \bfseries Agentic AI \;|\; LangChain / LangGraph \;|\; Node.js \& React}\\[6pt]
 
 \href{mailto:itsjakirhussain@gmail.com}{itsjakirhussain@gmail.com} \;|\;
 +971 551419969 \;|\;
@@ -169,9 +179,9 @@ Dubai, UAE \;|\;
 \vspace{2pt}
 \section*{Professional Summary}
 \SmallBody
-Senior Full-Stack \& AI Platform Engineer with 8+ years of experience building cloud-native and AI-powered platforms using Node.js, TypeScript, React, and GraphQL across fintech and media environments.\\[5pt]
+Senior AI Engineer with strong full-stack foundations --- 8+ years building cloud-native, AI-powered platforms with Node.js, TypeScript, React, and GraphQL across banking, fintech, e-commerce, and media environments.\\[5pt]
 
-Specialized in production AI systems including multi-agent LLM architectures, LangChain/LangGraph orchestration, MCP-based tool integrations, and Retrieval-Augmented Generation (RAG) pipelines deployed on scalable cloud infrastructure.\\[8pt]
+Specialized in production agentic AI systems — multi-agent LLM architectures, LangChain/LangGraph orchestration, MCP tool integrations, and Retrieval-Augmented Generation (RAG) pipelines — deployed in regulated banking environments.\\[8pt]
 
 \vspace{-8pt}
 \topdivider
@@ -190,69 +200,80 @@ Specialized in production AI systems including multi-agent LLM architectures, La
 \roleheader{Synechron Technologies LLC (Client: Emirates NBD)}{Dubai, UAE}{Lead -- Technology}{Dec 2024 -- Present}
 \roledivider
 
-\projecttitle{Enterprise AI Platform — Emirates NBD}
+\projecttitle{Trade Finance AI — Trade-Based Money Laundering (TBML) Detection — Emirates NBD}
 
-Leading the architecture and rollout of Emirates NBD’s enterprise AI platform to standardize development of secure, production-grade LLM applications and accelerate AI adoption across engineering teams.
+AI-powered \textbf{Anti-Money Laundering (AML)} system screening trade finance transactions for TBML risk via parallel multi-agent LLM analysis over \textbf{Eximbills} trade data.
 
 \begin{itemize}
 
-\item Architecting a centralized \textbf{AI development platform} enabling teams to build scalable AI applications with standardized tooling, governance controls, and reusable infrastructure.
+\item Architected a \textbf{multi-agent compliance engine} using \textbf{LangChain and LangGraph (StateGraph)} with \textbf{GPT-4.1}, executing \textbf{25+ parallel risk checks} per trade transaction.
 
-\item Designing reusable \textbf{multi-agent orchestration frameworks} using \textbf{Node.js, TypeScript, LangChain, and LangGraph} to simplify development of enterprise AI workflows.
+\item Built \textbf{document-intelligence agents} extracting and validating \textbf{CDD (Customer Due Diligence) PDF forms} against trade transaction records.
 
-\item Building shared \textbf{AI SDKs and MCP-based tool infrastructure} enabling secure integration with internal enterprise systems and APIs.
+\item Developed detection agents covering \textbf{transaction history patterns, value and frequency anomalies, and related vs unrelated counterparty checks}.
 
-\item Establishing enterprise \textbf{AI governance and guardrails} including prompt safety, authorization controls, data masking, and compliance validation aligned with banking regulations.
-
-\item Collaborating with a cross-functional \textbf{AI engineering squad} to improve developer productivity and accelerate experimentation across treasury, analytics, and operations teams.
-
-\item Accelerated internal AI development by enabling reusable agent frameworks adopted across multiple engineering teams.
+\item Aggregated agent findings into \textbf{structured risk scores with auditable evidence trails} for compliance review.
 
 \end{itemize}
 
 \textbf{Technologies}\\
-Node.js, TypeScript, LangChain, LangGraph, MCP (Model Context Protocol), Multi-Agent Systems, RAG, Vector Embeddings, OpenAI, Claude, LLaMA, Redis
+LangChain, LangGraph (StateGraph), GPT-4.1, OpenAI, Multi-Agent Systems, Document Intelligence, Eximbills, AML / TBML Compliance
 
 \blockdivider
 
 \projecttitle{Treasury AI Copilot (Calypso Integration) — Emirates NBD}
 
-Architected and delivered an AI assistant enabling real-time treasury insights and operational decision support within a regulated banking environment.
+AI assistant delivering real-time treasury insights and operational decision support in a regulated bank.
 
 \begin{itemize}
 
-\item Built a \textbf{multi-agent LLM system} using Node.js and TypeScript enabling deterministic orchestration, tool execution, and auditable response validation.
+\item Built a \textbf{multi-agent LLM system} (\textbf{Node.js, TypeScript, LangGraph}) with deterministic tool execution, retries, failure isolation, and auditable validation.
 
-\item Implemented \textbf{LangGraph-based agent orchestration} supporting workflow control, retries, and failure isolation for complex treasury operations.
+\item Developed \textbf{Retrieval-Augmented Generation (RAG)} pipelines using vector embeddings for context-aware responses without sensitive data exposure.
 
-\item Developed \textbf{Retrieval-Augmented Generation (RAG)} pipelines using vector embeddings to provide context-aware responses while preventing sensitive data exposure.
+\item Integrated \textbf{Model Context Protocol (MCP)} tools to securely invoke \textbf{Calypso APIs}, with \textbf{Redis session memory} for low-latency conversational context.
 
-\item Integrated \textbf{Model Context Protocol (MCP)} tools to securely invoke \textbf{Calypso APIs} for treasury data retrieval and operational workflows.
-
-\item Implemented \textbf{Redis session memory and caching} to maintain conversational context and enable low-latency AI responses.
-
-\item Integrated multiple LLM providers (\textbf{OpenAI, Claude, LLaMA}) with dynamic routing, fallback strategies, and sensitivity-aware response handling.
+\item Integrated multiple LLM providers (\textbf{OpenAI, Claude, LLaMA}) with dynamic routing, fallbacks, and sensitivity-aware response handling.
 
 \end{itemize}
 
 \textbf{Technologies}\\
 Node.js, TypeScript, LangChain, LangGraph, MCP, Multi-Agent Systems, RAG, Vector Embeddings, OpenAI, Claude, LLaMA, Redis, Calypso APIs
 
-\vspace{42pt}
+\blockdivider
 
-\projecttitle{Open Finance Platform — Emirates NBD}
+\projecttitle{Enterprise AI Platform — Emirates NBD}
 
-Owned backend architecture and API development for Emirates NBD’s Open Finance Platform under the UAE Central Bank \textbf{``Compete \& Comply''} Open Banking framework.
+Leading architecture and rollout of Emirates NBD's enterprise AI platform standardizing secure, production-grade LLM application development across engineering teams.
 
 \begin{itemize}
 
-\item Designed and delivered \textbf{Node.js and TypeScript microservices} enabling secure consent-driven financial data exchange between Licensed Financial Institutions (LFIs) and Third-Party Providers (TPPs).
+\item Architecting a centralized \textbf{AI development platform} with standardized tooling, governance controls, and reusable infrastructure for scalable AI applications.
 
-\item Built \textbf{REST and GraphQL APIs} using Express and Apollo GraphQL integrated with React dashboards for regulatory and consent workflows.
+\item Designing reusable \textbf{multi-agent frameworks}, shared \textbf{AI SDKs, and MCP tool infrastructure} (\textbf{Node.js, TypeScript, LangChain, LangGraph}) adopted across engineering teams.
 
-\item Integrated \textbf{3Scale API Gateway} and automated CI/CD pipelines (Jenkins, OpenShift), reducing release cycles by approximately \textbf{40\%}.
+\item Establishing enterprise \textbf{AI governance and guardrails} — prompt safety, authorization controls, data masking, and compliance validation aligned with banking regulations.
 
-\item Worked directly with UAE Central Bank stakeholders to ensure compliance with Open Banking standards, security policies, and governance requirements.
+\end{itemize}
+
+\textbf{Technologies}\\
+Node.js, TypeScript, LangChain, LangGraph, MCP, Multi-Agent Systems, RAG, OpenAI, Claude, LLaMA, Redis
+
+\blockdivider
+
+\projecttitle{Open Finance Platform — Emirates NBD}
+
+Owned backend architecture and API development for Emirates NBD's Open Finance Platform under the UAE Central Bank \textbf{``Compete \& Comply''} Open Banking framework.
+
+\begin{itemize}
+
+\item Delivered \textbf{Node.js and TypeScript microservices} enabling secure consent-driven financial data exchange between Licensed Financial Institutions (LFIs) and Third-Party Providers (TPPs).
+
+\item Built \textbf{REST and GraphQL APIs} (Express, Apollo GraphQL) integrated with React dashboards for regulatory and consent workflows.
+
+\item Integrated \textbf{3Scale API Gateway} and automated CI/CD pipelines (Jenkins, OpenShift), reducing release cycles by \textbf{40\%}.
+
+\item Partnered with UAE Central Bank stakeholders on Open Banking compliance, security policies, and governance requirements.
 
 \end{itemize}
 

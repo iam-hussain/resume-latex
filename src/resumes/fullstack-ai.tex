@@ -1,0 +1,467 @@
+\documentclass[10pt,a4paper]{article}
+
+% =========================
+% PAGE / MARGINS (balanced for 2 pages)
+% =========================
+\usepackage[a4paper,top=0.45in,bottom=0.45in,left=0.45in,right=0.45in]{geometry}
+
+% =========================
+% FONTS (pdfLaTeX, no imports)
+% =========================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{sourcesanspro}
+
+% =========================
+% CORE
+% =========================
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{needspace}
+\usepackage{paracol}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[none]{hyphenat} % prevents word hyphenation/breaking
+
+% =========================
+% COLORS
+% =========================
+\definecolor{primary}{HTML}{111827}
+\definecolor{secondary}{HTML}{6B7280}
+\definecolor{rulecolor}{HTML}{E5E7EB}
+
+% =========================
+% LINKS (ATS-safe)
+% =========================
+\hypersetup{
+  colorlinks=true,
+  linkcolor=primary,
+  urlcolor=primary,
+  citecolor=primary,
+  pdfborder={0 0 0}
+}
+\urlstyle{same}
+
+% =========================
+% TYPOGRAPHY
+% =========================
+\setlength{\headheight}{30pt}
+\setlength{\headsep}{5pt}
+\setlength{\columnsep}{1.8em}
+\RaggedRight
+\linespread{1.03}
+\setlength{\emergencystretch}{2em}
+\sloppy
+
+% =========================
+% PAGE HEADER (PAGE 1 / PAGE 2)
+% =========================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\ATSspaceoff\textcolor{secondary}{\footnotesize PAGE \thepage}\ATSspaceon}
+
+% =========================
+% SECTION STYLE (RIGHT COLUMN)
+% =========================
+\titleformat{\section}
+  {\needspace{3\baselineskip}\large\bfseries\color{primary}}
+  {}
+  {0pt}
+  {\MakeUppercase}
+\titlespacing*{\section}{0pt}{0pt}{4pt}
+
+% =========================
+% LISTS
+% =========================
+\setlist[itemize]{leftmargin=1.15em, itemsep=2pt, topsep=3pt, parsep=0pt, partopsep=0pt}
+\renewcommand\labelitemi{\textbullet}
+
+% =========================
+% SIZING HELPERS (font hierarchy)
+% =========================
+\newcommand{\NameSize}{\fontsize{22}{24}\selectfont}
+\newcommand{\TitleSize}{\fontsize{10.8}{13}\selectfont}
+\newcommand{\TagSize}{\fontsize{10}{12}\selectfont}
+\newcommand{\BodySize}{\fontsize{9.7}{12}\selectfont}
+\newcommand{\SmallBody}{\fontsize{9.2}{11.4}\selectfont}
+
+% =========================
+% DIVIDERS
+% =========================
+\newcommand{\topdivider}{\color{rulecolor}\rule{\linewidth}{0.5pt}\color{primary}\vspace{0pt}}
+\newcommand{\blockdivider}{\vspace{0pt}\color{rulecolor}\rule{\linewidth}{0.5pt}\color{primary}\vspace{4pt}}
+
+% =========================
+% SIDEBAR MACROS (LEFT COLUMN)
+% =========================
+\newcommand{\sideheading}[1]{%
+  {\RaggedRight\bfseries\color{primary}\large\MakeUppercase{#1}\par}%
+  \vspace{0pt}%
+}
+\newcommand{\sidesub}[1]{%
+  \vspace{6pt}%
+  {\RaggedRight\bfseries\color{primary}\MakeUppercase{#1}\par}%
+  \vspace{3pt}%
+}
+\newcommand{\sideitem}[1]{%
+  {\RaggedRight\SmallBody\textcolor{primary}{%
+    \hyphenpenalty=10000\exhyphenpenalty=10000 #1}\par}%
+}
+
+% =========================
+% RIGHT COLUMN HELPERS (ATS-optimized role structure)
+% =========================
+% Order is intentionally: Job Title -> Company | Location -> Dates
+
+% Role header with full-width left/right alignment on both lines
+\newcommand{\roleheader}[4]{%
+  % Line 1: Job Title — Dates
+  \noindent
+  \textbf{\MakeUppercase{#3}}%
+  \hfill
+  \textcolor{secondary}{#4}\\[0pt]
+
+  % Line 2: Company — Location
+  \noindent
+  \textbf{#1}%
+  \hfill
+  \textcolor{secondary}{#2}\\[0pt]
+}
+
+% Full-width divider under each role header
+\newcommand{\roledivider}{%
+  \vspace{-1pt}%
+  {\color{rulecolor}\rule{\linewidth}{0.5pt}}%
+  \vspace{2pt}%
+}
+
+% Projects explicitly labeled for ATS parsing
+\newcommand{\projecttitle}[1]{\textbf{#1}\par\vspace{2pt}}
+
+% =========================
+% ATS: embed real space glyphs in the PDF so text extractors
+% never glue words at bold/regular font boundaries
+% (toggled off for the large name line, where the injected
+% space glyph breaks rendering at display size)
+% =========================
+\ifdefined\pdfinterwordspaceon\pdfinterwordspaceon\fi
+\newcommand{\ATSspaceoff}{\ifdefined\pdfinterwordspaceoff\pdfinterwordspaceoff\fi}
+\newcommand{\ATSspaceon}{\ifdefined\pdfinterwordspaceon\pdfinterwordspaceon\fi}
+
+% =========================
+% DOCUMENT
+% =========================
+\begin{document}
+\BodySize
+
+% =========================
+% PAGE 1 HEADER (centered)
+% =========================
+\begin{center}
+
+{\ATSspaceoff\NameSize \bfseries JAKIR HUSSAIN\ATSspaceon}\\[4pt]
+{\TitleSize \bfseries Senior Full-Stack Engineer}\\[2pt]
+{\TagSize \bfseries React \& Node.js \;|\; TypeScript \;|\; Agentic AI}\\[6pt]
+
+\href{mailto:itsjakirhussain@gmail.com}{itsjakirhussain@gmail.com} \;|\;
++971 551419969 \;|\;
+Dubai, UAE \;|\;
+\href{https://linkedin.com/in/iam-hussain}{LinkedIn} \;|\;
+\href{https://iam-hussain.site}{Portfolio}
+
+\end{center}
+\vspace{-8pt}
+\topdivider
+\vspace{2pt}
+\section*{Professional Summary}
+\SmallBody
+Senior Full-Stack Engineer with 8+ years designing and shipping end-to-end products — React and Next.js frontends, Node.js and TypeScript microservices, and GraphQL APIs — across banking, fintech, e-commerce, and media.\\[5pt]
+
+Hands-on with production agentic AI — multi-agent LLM systems built with LangChain/LangGraph, MCP tool integrations, and Retrieval-Augmented Generation (RAG) pipelines — embedded into full-stack platforms in regulated banking.\\[8pt]
+
+\vspace{-8pt}
+\topdivider
+\vspace{2pt}
+
+% ============================================================
+% PAGE 1: LEFT = EXPERIENCE, RIGHT = SKILLS
+% ============================================================
+\setcolumnwidth{0.69\textwidth,0.31\textwidth}
+\begin{paracol}{2}
+
+% ---------- LEFT COLUMN ----------
+\switchcolumn[0]*
+\section*{Work Experience}
+
+\roleheader{Synechron Technologies LLC (Client: Emirates NBD)}{Dubai, UAE}{Lead -- Technology}{Dec 2024 -- Present}
+\roledivider
+
+\projecttitle{Open Finance Platform — Emirates NBD}
+
+Owned end-to-end architecture and delivery for Emirates NBD's Open Finance Platform under the UAE Central Bank \textbf{``Compete \& Comply''} Open Banking framework.
+
+\begin{itemize}
+
+\item Designed and delivered \textbf{Node.js and TypeScript microservices} enabling secure consent-driven financial data exchange between Licensed Financial Institutions (LFIs) and Third-Party Providers (TPPs).
+
+\item Built \textbf{REST and GraphQL APIs} (Express, Apollo GraphQL) and \textbf{React dashboards} for regulatory and consent workflows.
+
+\item Integrated \textbf{3Scale API Gateway} and automated CI/CD pipelines (Jenkins, OpenShift), reducing release cycles by \textbf{40\%}.
+
+\item Partnered with UAE Central Bank stakeholders on Open Banking compliance, security policies, and governance requirements.
+
+\end{itemize}
+
+\textbf{Technologies}\\
+Node.js, Express.js, TypeScript, REST APIs, GraphQL, Apollo GraphQL, React.js, MongoDB, Docker, Kubernetes, OpenShift, 3Scale API Gateway, Jenkins
+
+\blockdivider
+
+\projecttitle{Enterprise AI Platform — Emirates NBD}
+
+Leading architecture and rollout of Emirates NBD's enterprise AI platform standardizing secure, production-grade LLM application development across engineering teams.
+
+\begin{itemize}
+
+\item Architecting a centralized \textbf{AI development platform} with standardized tooling, governance controls, and reusable infrastructure for scalable AI applications.
+
+\item Designing reusable \textbf{multi-agent frameworks}, shared \textbf{AI SDKs, and MCP tool infrastructure} (\textbf{Node.js, TypeScript, LangChain, LangGraph}) adopted across engineering teams.
+
+\item Establishing enterprise \textbf{AI governance and guardrails} — prompt safety, authorization controls, data masking, and compliance validation aligned with banking regulations.
+
+\end{itemize}
+
+\textbf{Technologies}\\
+Node.js, TypeScript, LangChain, LangGraph, MCP, Multi-Agent Systems, RAG, OpenAI, Claude, LLaMA, Redis
+
+\blockdivider
+
+\projecttitle{Treasury AI Copilot (Calypso Integration) — Emirates NBD}
+
+AI assistant delivering real-time treasury insights and operational decision support in a regulated bank.
+
+\begin{itemize}
+
+\item Built a \textbf{multi-agent LLM system} (\textbf{Node.js, TypeScript, LangGraph}) with deterministic tool execution, retries, and auditable validation.
+
+\item Developed \textbf{Retrieval-Augmented Generation (RAG)} pipelines and \textbf{MCP tools} securely invoking \textbf{Calypso APIs}, with \textbf{Redis session memory} for low-latency context.
+
+\item Integrated multiple LLM providers (\textbf{OpenAI, Claude, LLaMA}) with dynamic routing, fallbacks, and sensitivity-aware handling.
+
+\end{itemize}
+
+\textbf{Technologies}\\
+Node.js, TypeScript, LangChain, LangGraph, MCP, RAG, Vector Embeddings, OpenAI, Claude, LLaMA, Redis, Calypso APIs
+
+\blockdivider
+
+\projecttitle{Trade Finance AI — Trade-Based Money Laundering (TBML) Detection — Emirates NBD}
+
+AI-powered \textbf{Anti-Money Laundering (AML)} system screening trade finance transactions for TBML risk via parallel multi-agent LLM analysis over \textbf{Eximbills} trade data.
+
+\begin{itemize}
+
+\item Architected a \textbf{multi-agent compliance engine} (\textbf{LangChain, LangGraph StateGraph, GPT-4.1}) executing \textbf{25+ parallel risk checks} per trade transaction.
+
+\item Built \textbf{document-intelligence agents} validating \textbf{CDD (Customer Due Diligence) PDF forms} against trade transaction records.
+
+\item Developed detection agents for \textbf{transaction patterns, value and frequency anomalies, and counterparty checks}, producing auditable risk scores for compliance review.
+
+\end{itemize}
+
+\textbf{Technologies}\\
+LangChain, LangGraph (StateGraph), GPT-4.1, OpenAI, Multi-Agent Systems, Document Intelligence, Eximbills, AML / TBML Compliance
+
+\blockdivider
+
+
+\roleheader{Cond\'e Nast Technology Lab}{Bangalore, India}{Software Engineer II}{Jun 2021 -- Nov 2024}
+\roledivider
+\projecttitle{ The New Yorker — Personalization \& Content Platforms}
+
+\begin{itemize}
+
+\item Built a \textbf{full-stack AI-driven personalization platform} integrating ML recommendations with React and Next.js editorial products, increasing engagement by \textbf{27\%}.
+
+\item Developed scalable \textbf{React and Next.js applications} backed by GraphQL APIs serving high-traffic editorial content.
+
+\item Implemented \textbf{Kubernetes CronJobs} for automated Instagram caption ingestion and continuous content synchronization.
+
+\item Delivered \textbf{server-driven UI architecture} reducing duplicated frontend layout logic by approximately \textbf{40\%}.
+
+\item Improved reliability and performance through monitoring and optimization using \textbf{Datadog} and frontend performance instrumentation.
+
+\end{itemize}
+
+\textbf{Technologies}\\
+React.js, Next.js, TypeScript, GraphQL, Node.js, Prisma, MongoDB, Kubernetes, Terraform, AWS, GitHub Actions, Datadog, Fastly CDN
+
+\blockdivider
+
+\roleheader{HTC Global Services}{Chennai, Tamil Nadu, India}{Software Developer}{Feb 2020 -- Jun 2021}
+\roledivider
+
+\projecttitle{Project: Manipal Education and Lead Management}
+\begin{itemize}
+
+\item Built microservice-based \textbf{Node.js REST APIs} supporting \textbf{50K+ students} on Manipal University's online education platform.
+
+\item Developed serverless data pipelines using \textbf{AWS Lambda, SQS, and DynamoDB}, improving lead processing speed by \textbf{60\%}.
+
+\item Integrated \textbf{Elasticsearch} for search and analytics capabilities.
+
+\end{itemize}
+
+\textbf{Technologies}\\
+Node.js, Express.js, TypeScript, DynamoDB, Elasticsearch, AWS Lambda, SQS, Docker, AWS EC2
+
+\blockdivider
+
+\roleheader{Develop Script LLC}{Chennai, Tamil Nadu, India}{Node JS Developer}{Dec 2018 -- Jan 2020}
+\roledivider
+
+\projecttitle{Project: Mazzady, Sothebi, PreRio, SlotCycle}
+\begin{itemize}
+
+\item Built real-time auction platforms using \textbf{Node.js, Express, and Socket.IO}.
+
+\item Implemented \textbf{Redis Pub/Sub} for low-latency bid synchronization across concurrent users.
+
+\item Developed React-based admin and bidding interfaces with real-time updates.
+
+\end{itemize}
+
+\textbf{Tech Stack}\\
+Node.js, Express.js, React.js, Socket.IO, Redis, MySQL
+
+% ---------- RIGHT COLUMN ----------
+\switchcolumn[1]
+\sideheading{Skills}
+
+\sidesub{Back-End \& APIs}
+\sideitem{Node.js}
+\sideitem{Bun}
+\sideitem{TypeScript}
+\sideitem{Express.js}
+\sideitem{Hapi}
+\sideitem{REST APIs}
+\sideitem{GraphQL}
+\sideitem{Apollo GraphQL}
+\sideitem{GraphQL Modules}
+\sideitem{Prisma ORM}
+\sideitem{Sequelize ORM}
+
+\sidesub{Front-End}
+\sideitem{React.js}
+\sideitem{Next.js}
+\sideitem{Redux Toolkit}
+\sideitem{React Query}
+\sideitem{React Router}
+\sideitem{Tailwind CSS}
+\sideitem{Material UI}
+\sideitem{Styled Components}
+\sideitem{Framer Motion}
+\sideitem{Vite}
+\sideitem{Webpack}
+\sideitem{Babel}
+\sideitem{Storybook}
+
+\sidesub{AI / LLM Engineering}
+\sideitem{LangChain / LangGraph}
+\sideitem{Model Context Protocol (MCP)}
+\sideitem{Agentic AI Systems}
+\sideitem{Retrieval-Augmented Generation (RAG)}
+\sideitem{Vector Databases}
+\sideitem{LLM Function Calling}
+\sideitem{Prompt Engineering}
+\sideitem{OpenAI API}
+\sideitem{Claude}
+\sideitem{LLaMA}
+\sideitem{AI Guardrails}
+
+\sidesub{Mobile \& Desktop}
+\sideitem{React Native}
+\sideitem{Expo}
+\sideitem{Electron}
+\sideitem{Tauri}
+\sideitem{React Native WebView}
+
+\sidesub{Data \& Search}
+\sideitem{MongoDB}
+\sideitem{PostgreSQL}
+\sideitem{MySQL}
+\sideitem{DynamoDB}
+\sideitem{Redis}
+\sideitem{Elasticsearch}
+
+\sidesub{Cloud \& DevOps}
+\sideitem{AWS}
+\sideitem{Lambda}
+\sideitem{S3}
+\sideitem{Docker}
+\sideitem{Podman}
+\sideitem{Kubernetes}
+\sideitem{OpenShift}
+\sideitem{Terraform}
+\sideitem{GitHub Actions}
+\sideitem{Jenkins}
+\sideitem{Serverless Architectures}
+
+\sidesub{Testing}
+\sideitem{Playwright}
+\sideitem{Cypress}
+\sideitem{Jest}
+\sideitem{Mocha}
+\sideitem{Chai}
+\sideitem{Cucumber.js}
+\sideitem{Vitest}
+
+\sidesub{Engineering Practices}
+\sideitem{System Design}
+\sideitem{Software Architecture}
+\sideitem{Microservices}
+\sideitem{Distributed Systems}
+\sideitem{Performance Engineering}
+\sideitem{Secure Development}
+\sideitem{CI/CD Automation}
+\sideitem{Accessibility (WCAG)}
+
+\sidesub{Highlights}
+\sideitem{Full-Stack Product Engineering}
+\sideitem{Open Banking Platforms}
+\sideitem{Production LLM Systems}
+\sideitem{High-Traffic Media Systems}
+\vspace{10pt}
+
+\sideheading{Education}
+
+\sidesub{B.E. in Mechanical Engineering}
+\sideitem{Arunai Engineering College}
+\sideitem{Aug 2013 -- Jun 2016}
+
+\vspace{6pt}
+
+\sidesub{Diploma in Mechanical Engineering}
+\sideitem{Kumaran Polytechnic College}
+\sideitem{Aug 2010 -- Jun 2013}
+
+
+\vspace{8pt}
+
+\sidesub{Languages}
+\sideitem{English, Tamil, Hindi}
+
+\vspace{8pt}
+
+\sidesub{Links}
+\sideitem{Portfolio --- \href{https://iam-hussain.site}{iam-hussain.site}}
+\sideitem{LinkedIn --- \href{https://linkedin.com/in/iam-hussain}{linkedin.com/in/iam-hussain}}
+\sideitem{GitHub --- \href{https://github.com/iam-hussain}{github.com/iam-hussain}}
+
+\end{paracol}
+
+\end{document}
