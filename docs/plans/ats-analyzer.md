@@ -1,6 +1,18 @@
 # Implementation Plan — ATS Analyzer + JD Matching
 
-> Status: proposed · Owner: Jakir · Target: 3 phases
+> Status: **implemented** (Phases 1, 2 & AI assist) · Owner: Jakir · Target: 3 phases
+>
+> Shipped on branch `claude/ats-plan-ui-improvements-04i24r`:
+> - Phase 1 — ATS Analyzer (`lib/ats/`, `/api/ats`, tabbed panel, report UI).
+> - Phase 1.5 — compile cache + LaTeX error surfacing (`lib/latex.ts`).
+> - Phase 2 — skills dictionary + JD matching + JD UI.
+> - Phase 3 — AI Assist, generalized to a **multi-provider, configurable model**
+>   layer (OpenAI + Anthropic + OpenRouter; keys via server env).
+>
+> Notable deviation from the original plan: extraction degrades gracefully.
+> When no LaTeX toolchain is available it analyzes the `.tex` source instead of
+> requiring a compiled PDF, so the feature works in any environment. pdfjs PDF
+> extraction is used as the higher-fidelity backend when `latexmk` is present.
 > Turns the TeX resume builder from "Overleaf clone" into a tool that shows you
 > what an Applicant Tracking System actually parses from your PDF, and how well
 > it matches a given job description.

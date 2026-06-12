@@ -7,7 +7,7 @@ import { DEBOUNCE_MS } from '@/lib/constants'
 import { createResumeFile, listResumeFiles, loadResumeFile, saveResumeFile } from '@/lib/api'
 import { ResizablePanels } from './resizable-panels'
 import { TexEditor } from '@/components/editor/tex-editor'
-import { PdfPreview } from '@/components/preview/pdf-preview'
+import { PreviewTabs } from '@/components/preview/preview-tabs'
 import { Button } from '@/components/ui/button'
 
 interface DashboardShellProps {
@@ -26,6 +26,7 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
 
   const [autoReload, setAutoReload] = useState(true)
   const [frozenTex, setFrozenTex] = useState(initialTex)
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [autoSave, setAutoSave] = useState(() => {
     if (typeof window === 'undefined') return false
     return localStorage.getItem('resume-auto-save') === 'true'
@@ -35,6 +36,22 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
   const previewTex = autoReload ? debouncedTex : frozenTex
   const { previewUrl, status, error } = usePreview(previewTex)
   const isDirty = texContent !== savedContent
+
+  useEffect(() => {
+    const stored = typeof window !== 'undefined' ? localStorage.getItem('resume-theme') : null
+    const initial = stored === 'dark' || stored === 'light' ? stored : 'light'
+    setTheme(initial)
+    document.documentElement.classList.toggle('dark', initial === 'dark')
+  }, [])
+
+  function toggleTheme(): void {
+    setTheme((prev) => {
+      const next = prev === 'dark' ? 'light' : 'dark'
+      document.documentElement.classList.toggle('dark', next === 'dark')
+      if (typeof window !== 'undefined') localStorage.setItem('resume-theme', next)
+      return next
+    })
+  }
 
   function handleAutoReloadChange(enabled: boolean): void {
     setAutoReload(enabled)
@@ -185,10 +202,10 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
     <div className="h-screen w-screen flex flex-col overflow-hidden bg-background text-foreground">
       <header className="shrink-0 px-4 py-3 border-b border-border bg-card">
         <div className="flex flex-wrap items-center gap-3">
-          <div className="min-w-[220px]">
+          <div className="min-w-[200px]">
             <h1 className="text-lg font-semibold">TeX Resume Builder</h1>
             <p className="text-xs text-muted-foreground">
-              Real-time PDF rendering with professional TeX workflow
+              Live preview · ATS analyzer · AI optimization
             </p>
           </div>
 
@@ -245,22 +262,32 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
             </Button>
           </div>
 
-          <div className="ml-auto flex items-center gap-2 rounded-md border border-border px-3 py-2">
-            <span
-              className={`h-2 w-2 rounded-full ${
-                messageTone === 'success'
-                  ? 'bg-primary'
-                  : messageTone === 'error'
-                    ? 'bg-destructive'
-                    : 'bg-muted-foreground'
-              }`}
-            />
-            <p className="text-xs text-muted-foreground">
-              {message ?? (isDirty ? 'Unsaved changes' : 'Ready')}
-            </p>
-            <span className="text-[10px] text-muted-foreground border-l border-border pl-2">
-              {autoSave ? 'Auto save' : 'Cmd/Ctrl+S'}
-            </span>
+          <div className="ml-auto flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-sm hover:bg-accent"
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+            <div className="flex items-center gap-2 rounded-md border border-border px-3 py-2">
+              <span
+                className={`h-2 w-2 rounded-full ${
+                  messageTone === 'success'
+                    ? 'bg-primary'
+                    : messageTone === 'error'
+                      ? 'bg-destructive'
+                      : 'bg-muted-foreground'
+                }`}
+              />
+              <p className="text-xs text-muted-foreground">
+                {message ?? (isDirty ? 'Unsaved changes' : 'Ready')}
+              </p>
+              <span className="text-[10px] text-muted-foreground border-l border-border pl-2">
+                {autoSave ? 'Auto save' : 'Cmd/Ctrl+S'}
+              </span>
+            </div>
           </div>
         </div>
       </header>
@@ -280,11 +307,12 @@ export function DashboardShell({ initialTex }: DashboardShellProps): React.React
             </div>
           }
           right={
-            <PdfPreview
+            <PreviewTabs
+              texContent={texContent}
+              debouncedTex={previewTex}
               previewUrl={previewUrl}
               status={status}
               error={error}
-              tex={texContent}
               fileName={activeFile}
               autoReload={autoReload}
               onAutoReloadChange={handleAutoReloadChange}
