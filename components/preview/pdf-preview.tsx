@@ -16,6 +16,8 @@ interface PdfPreviewProps {
   onAutoReloadChange?: (enabled: boolean) => void
   onRefresh?: () => void
   onDownload?: () => void
+  // When embedded inside the tabbed panel, skip the outer card chrome.
+  embedded?: boolean
 }
 
 export function PdfPreview({
@@ -28,6 +30,7 @@ export function PdfPreview({
   onAutoReloadChange,
   onRefresh,
   onDownload,
+  embedded = false,
 }: PdfPreviewProps): React.ReactElement {
   const [zoom, setZoom] = useState(1)
 
@@ -49,7 +52,11 @@ export function PdfPreview({
   }
 
   return (
-    <div className="h-full w-full flex flex-col min-h-0 bg-card rounded-r-lg overflow-hidden border-l border-border">
+    <div
+      className={`h-full w-full flex flex-col min-h-0 bg-card overflow-hidden ${
+        embedded ? '' : 'rounded-r-lg border-l border-border'
+      }`}
+    >
       <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 border-b border-border shrink-0 bg-muted/40">
         <div className="flex items-center gap-2">
           <span

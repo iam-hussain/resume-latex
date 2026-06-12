@@ -17,8 +17,16 @@
 *.vrb
 *.xdv
 
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
 # Next.js
 .next/
+
+# TypeScript
+*.tsbuildinfo
 
 # Output directories
 build/
